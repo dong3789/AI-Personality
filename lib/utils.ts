@@ -7,8 +7,11 @@ export function cn(...inputs: ClassValue[]) {
 
 // GitHub URL 파싱
 export function parseGitHubUrl(url: string): { owner: string; repo: string } | null {
+  // URL에서 # 이후 부분 제거 (fragment)
+  const cleanUrl = url.split('#')[0].trim();
+
   const regex = /^https?:\/\/github\.com\/([^\/]+)\/([^\/]+)\/?$/;
-  const match = url.match(regex);
+  const match = cleanUrl.match(regex);
 
   if (!match) {
     return null;
