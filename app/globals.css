@@ -1,0 +1,57 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+:root {
+  --background: #0a0a0f;
+  --foreground: #c9d1d9;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: 'JetBrains Mono', 'Menlo', 'Monaco', 'Courier New', monospace;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* Custom scrollbar for dark theme */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0d1117;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #30363d;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #484f58;
+}
+
+/* Smooth glow animation for focus states */
+@keyframes glow {
+  0%, 100% {
+    box-shadow: 0 0 10px rgba(52, 211, 153, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(52, 211, 153, 0.5);
+  }
+}
+
+/* Selection color */
+::selection {
+  background: rgba(52, 211, 153, 0.3);
+  color: #c9d1d9;
+}

@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  # Next.js 애플리케이션
+  nextjs:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ai-personality-nextjs
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=production
+      - OLLAMA_API_URL=http://host.docker.internal:11434
+      - DATABASE_PATH=/app/data/database.sqlite
+      - APP_URL=https://ai-analyzer.yndl.dev
+      # SMTP 설정 (선택사항)
+      - SMTP_HOST=${SMTP_HOST:-}
+      - SMTP_PORT=${SMTP_PORT:-587}
+      - SMTP_USER=${SMTP_USER:-}
+      - SMTP_PASS=${SMTP_PASS:-}
+      - EMAIL_FROM=${EMAIL_FROM:-AI Personality Analyzer <noreply@yndl.dev>}
+    volumes:
+      - ./data:/app/data
+      - ./.cache:/app/.cache
+    expose:
+      - "3000"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    networks:
+      - proxy_net
+    labels:
+      caddy: "http://ai-analyzer.yndl.dev"
+      caddy.reverse_proxy: "{{upstreams 3000}}"
+      caddy.reverse_proxy.header_up: "X-Forwarded-Proto https"
+      caddy.encode: gzip
+
+networks:
+  proxy_net:
+    external: true

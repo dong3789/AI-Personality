@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  # Next.js 개발 환경
+  nextjs-dev:
+    image: node:20-alpine
+    container_name: ai-personality-dev
+    working_dir: /app
+    volumes:
+      - .:/app
+      - /app/node_modules  # node_modules는 컨테이너 내부에서 관리
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+      - OLLAMA_API_URL=http://host.docker.internal:11434
+      - DATABASE_PATH=/app/data/database.sqlite
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    command: sh -c "npm install && npm run dev"
+    stdin_open: true
+    tty: true

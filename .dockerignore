@@ -1,0 +1,17 @@
+node_modules
+.next
+.git
+.gitignore
+.env.local
+.env*.local
+.cache
+data/*.sqlite
+data/*.sqlite-journal
+README.md
+docs
+*.md
+.DS_Store
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+docker-compose.dev.yml
