@@ -7,6 +7,7 @@ echo "🚀 AI Personality Analyzer 배포 시작..."
 # 1. 환경 변수 확인
 if [ ! -f .env.production ]; then
     echo "❌ .env.production 파일이 없습니다!"
+    echo "💡 cp .env.production.example .env.production 후 값을 채워주세요. (커밋 금지)"
     exit 1
 fi
 
