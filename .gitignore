@@ -39,4 +39,7 @@ next-env.d.ts
 # database
 data/*.sqlite
 data/*.sqlite-journal
+
+# production env (값은 서버에만)
+.env.production
 !.env.production.example
