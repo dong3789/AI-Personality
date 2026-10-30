@@ -39,3 +39,6 @@ next-env.d.ts
 # database
 data/*.sqlite
 data/*.sqlite-journal
+
+# production env (do not commit)
+.env.production
